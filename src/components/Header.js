@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPrice } from "../utils/formatPrice";
 
 const Header = props => {
   return (
@@ -7,7 +8,7 @@ const Header = props => {
         <img src={props.car.image} alt={props.car.name} />
       </figure>
       <h2>{props.car.name}</h2>
-      <p>Amount: ${props.car.price}</p>
+      <p>Amount: {formatPrice(props.car.price)}</p>
     </>
   );
 };
