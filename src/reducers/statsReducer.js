@@ -134,7 +134,7 @@ export default function statsReducer(stats = initialStats, action) {
  
         case "REMOVE_FEATURE":
             {
-                const [newAvailableFeatures, newFeaturesOnCar] = moveFromArray(action.payload, stats.car.features, stats.additionalFeatures);
+                const [newFeaturesOnCar, newAvailableFeatures] = moveFromArray(action.payload, stats.car.features, stats.additionalFeatures);
                 const priceToSubtract = getPrice(action.payload, stats.car.features);
                 
                 return {
