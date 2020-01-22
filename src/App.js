@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { addFeature, removeFeature } from "./reducers/statsReducer";
+import { connect } from "react-redux";
+
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
@@ -21,4 +24,14 @@ const App = props => {
   );
 };
 
-export default App;
+function mapStateToProps(state) {
+  return {
+      additionalPrice: state.additionalPrice,
+      car: state.car,
+      additionalFeatures: state.additionalFeatures
+  }
+}
+
+const mapDispatchToProps = { addFeature, removeFeature };
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
