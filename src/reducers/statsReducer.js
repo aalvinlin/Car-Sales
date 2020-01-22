@@ -79,7 +79,7 @@ export default function statsReducer(stats = initialStats, action) {
         let object = array1.filter(item => item.id === targetId)[0];
 
         // if object not found, return both arrays as is
-        if (object.length === 0)
+        if (!object)
             { return [array1, array2]}
 
         let array1WithItemRemoved = array1.filter(item => item.id !== targetId);
