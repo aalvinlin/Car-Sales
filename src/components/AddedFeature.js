@@ -4,10 +4,17 @@ import { removeFeature } from "../reducers/statsReducer";
 import { connect } from "react-redux";
 
 const AddedFeature = props => {
+
+  const removeItem = (event, id) => {
+
+    event.preventDefault();
+    props.removeFeature(id);
+}
+
   return (
     <li>
       {/* Add an onClick to run a function to remove a feature */}
-      <button className="button" onClick={() => props.removeFeature(props.car.features.id)}>X</button>
+      <button className="button" onClick={(event) => removeItem(event, props.car.features.id)}>X</button>
       {props.feature.name}
     </li>
   );

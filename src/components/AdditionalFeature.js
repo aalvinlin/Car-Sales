@@ -6,12 +6,16 @@ import { connect } from "react-redux";
 
 const AdditionalFeature = props => {
 
-  console.log(props);
+  const addItem = (event, id) => {
+
+      event.preventDefault();
+      props.addFeature(id);
+  }
 
   return (
     <li>
       {/* Add an onClick that will let you add a feature to your car */}
-      <button className="button" onClick={() => props.addFeature(props.feature.id)}>Add</button>
+      <button className="button" onClick={(event) => addItem(event, props.feature.id)}>Add</button>
       {props.feature.name} (+{formatPrice(props.feature.price)})
     </li>
   );
