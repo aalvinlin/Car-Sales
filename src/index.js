@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createStore, combineReducers } from "redux";
-import { Provider } from "react-redux";
+import { connect, Provider } from "react-redux";
 
-import statsReducer from "./reducers/statsReducer";
+import statsReducer, { addFeature, removeFeature } from "./reducers/statsReducer";
 // import extrasReducer from "./reducers/extrasReducer";
 
 import App from './App';
@@ -18,13 +18,22 @@ import './styles.scss';
 // })
 
 const rootReducer = statsReducer;
-
 const store = createStore(rootReducer);
+
+function mapStateToProps(state) {
+    return {
+        additionalPrice: state.additionalPrice,
+        car: state.car,
+        additionalFeatures: state.additionalFeatures
+    }
+}
+
+const mapDispatchToProps = { addFeature, removeFeature };
 
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        {connect(mapStateToProps, mapDispatchToProps)(App)}
     </Provider>
     , rootElement);

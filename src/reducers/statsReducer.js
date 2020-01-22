@@ -91,16 +91,16 @@ export default function statsReducer(stats = initialStats, action) {
     switch (action.type)
     {
         case "ADD_FEATURE":
-
-            const [newFeaturesOnCar, newAvailableFeatures] = moveFromArray(action.payload, stats.car.features, stats.car.additionalFeatures);
-
-            return { ...stats, car: {...car, newFeaturesOnCar}, additionalFeatures: newAvailableFeatures}
+            {
+                const [newFeaturesOnCar, newAvailableFeatures] = moveFromArray(action.payload, stats.car.features, stats.car.additionalFeatures);
+                return { ...stats, car: {...stats.car, newFeaturesOnCar}, additionalFeatures: newAvailableFeatures}
+            }
  
         case "REMOVE_FEATURE":
-
-            const [newFeaturesOnCar, newAvailableFeatures] = moveFromArray(action.payload, stats.car.additionalFeatures, stats.car.features);
-
-            return { ...stats, car: {...car, newFeaturesOnCar}, additionalFeatures: newAvailableFeatures}
+            {
+                const [newFeaturesOnCar, newAvailableFeatures] = moveFromArray(action.payload, stats.car.additionalFeatures, stats.car.features);
+                return { ...stats, car: {...stats.car, newFeaturesOnCar}, additionalFeatures: newAvailableFeatures}
+            }
 
         default:
             return stats;
